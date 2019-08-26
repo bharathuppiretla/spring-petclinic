@@ -57,12 +57,14 @@ node {
         }
   
   stage('Docker Pipeline') {
-   docker.withRegistry('https://registry-1.docker.io/v2/', '3c204087-15f6-4a3f-8ce4-115bd055e374') {
+  
+  sh "docker ps"
+   //docker.withRegistry('https://registry-1.docker.io/v2/', '3c204087-15f6-4a3f-8ce4-115bd055e374') {
 
-         def customImage = docker.build("bharathuppiretla/imag1:v1")
+       //  def customImage = docker.build("bharathuppiretla/imag1:v1")
 
         /* Push the container to the custom Registry */
-        customImage.push()
+//        customImage.push()
         }
   
 }
