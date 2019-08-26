@@ -57,11 +57,12 @@ node {
         }
   
   stage('Docker Pipeline') {
-   
-sh "sudo docker build --build-arg JAR_FILE_PATH=/var/lib/jenkins/workspace/example_pipeline/target/*.war -t bharathuppiretla/petclinic ."
-sh "sudo docker push bharathuppiretla/petclinic"
-sh "sudo rm -r /var/lib/jenkins/workspace/sample/target/*.jar"
-sh "sudo docker rmi -f bharathuppiretla/petclinic"
+   docker.withRegistry('https://registry.hub.docker.com', 'dockergo') {
+
+         def customImage = docker.build("bharathuppiretla/imag1:v1")
+
+        /* Push the container to the custom Registry */
+        customImage.push()
   
 }
         
