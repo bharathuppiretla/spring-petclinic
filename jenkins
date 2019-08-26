@@ -65,7 +65,7 @@ sh "sudo docker push bharathuppiretla/petclinic"
 }
 stage('composeup')
 {
-sh "sudo docker compose up"
+sh "sudo docker-compose up "
 sh "sudo docker pull bharathuppiretla/petclinic"
 }
  // sh "docker ps"
