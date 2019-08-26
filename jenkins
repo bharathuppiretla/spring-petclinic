@@ -51,7 +51,7 @@ node {
    stage('Artifactory upload') { 
         def uploadSpec = """ 
         {  
-		"files": [ { "pattern": "/var/lib/jenkins/workspace/example_pipeline/target/*.jar", "target": "spring-petclinic" } ]  
+		"files": [ { "pattern": "/var/lib/jenkins/workspace/example_pipeline/target/*.jar", "target": "example-repo-local" } ]  
         }"""  
         server.upload(uploadSpec) 
         }
