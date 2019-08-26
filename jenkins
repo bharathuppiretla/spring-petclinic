@@ -56,7 +56,6 @@ node {
         server.upload(uploadSpec) 
         }
   
- 
   stage('Petclinic Docker Image') {
     steps{
 sh "sudo docker build -t bharathuppiretla/petclinic ."
@@ -73,7 +72,7 @@ sh "sudo docker push bharathuppiretla/petclinic"
 //        customImage.push()
       //  }
   
-}
+//}
         
    
 }
