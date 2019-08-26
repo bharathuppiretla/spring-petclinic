@@ -55,5 +55,15 @@ node {
         }"""  
         server.upload(uploadSpec) 
         }
+  
+  stage('Docker Pipeline') {
+   
+sh "sudo docker build --build-arg JAR_FILE_PATH=/var/lib/jenkins/workspace/example_pipeline/target/*.war -t bharathuppiretla/petclinic ."
+sh "sudo docker push bharathuppiretla/petclinic"
+sh "sudo rm -r /var/lib/jenkins/workspace/sample/target/*.jar"
+sh "sudo docker rmi -f bharathuppiretla/petclinic"
+  
+}
+        
    
 }
