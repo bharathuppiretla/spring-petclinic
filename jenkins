@@ -47,4 +47,11 @@ node {
          }
       }
    }
+   stage('Artifactory upload') { 
+        def uploadSpec = """ 
+        {  
+		"files": [ { "pattern": "/var/lib/jenkins/workspace/example_pipeline/target/*.jar", "target": "spring-petclinic" } ]  
+        }"""  
+        server.upload(uploadSpec) 
+   
 }
