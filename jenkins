@@ -10,32 +10,32 @@ node {
       mvnHome = tool 'mvn'
    }
    //sonar
-   stage('Sonar scan execution') {
+   //stage('Sonar scan execution') {
             // Run the sonar scan
            
                     //def mvnHome = tool 'mvn'
-                    withSonarQubeEnv {
+                //    withSonarQubeEnv {
 
-                        sh "'${mvnHome}/bin/mvn'  verify sonar:sonar -Dintegration-tests.skip=true -Dmaven.test.failure.ignore=true"
-            }
-        }
+                  //      sh "'${mvnHome}/bin/mvn'  verify sonar:sonar -Dintegration-tests.skip=true -Dmaven.test.failure.ignore=true"
+            //}
+        //}
    //sonar
    
-   stage('Quality Analysis') {
-        withSonarQubeEnv('sonar') {
-        sh 'mvn clean package sonar:sonar'
-        }
-    }
+   //stage('Quality Analysis') {
+     //   withSonarQubeEnv('sonar') {
+       // sh 'mvn clean package sonar:sonar'
+        //}
+    //}
     
-    stage("Quality Gate"){
-        timeout(time: 1, unit: 'HOURS') { 
-            def qg = waitForQualityGate() 
-            if (qg.status != 'OK') {
-                currentBuild.status='FAILURE'
-                error "Pipeline aborted due to quality gate failure: ${qg.status}"
-            }
-        }
-    }
+   // stage("Quality Gate"){
+     //   timeout(time: 1, unit: 'HOURS') { 
+       //     def qg = waitForQualityGate() 
+         //   if (qg.status != 'OK') {
+           //     currentBuild.status='FAILURE'
+             //   error "Pipeline aborted due to quality gate failure: ${qg.status}"
+            //}
+        //}
+    //}
    
    
    stage('Build') {
@@ -57,7 +57,7 @@ node {
         }
   
   stage('Docker Pipeline') {
-   docker.withRegistry('https://registry.hub.docker.com', 'dockergo') {
+   docker.withRegistry('https://registry-1.docker.io/v2/', 'dockergo') {
 
          def customImage = docker.build("bharathuppiretla/imag1:v1")
 
