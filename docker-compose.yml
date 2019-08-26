@@ -1,5 +1,6 @@
 version: '2'
- image: bharathuppiretla/petclinic
- ports:
-  -"8082:8090"
+ services:
+   image: bharathuppiretla/petclinic
+     ports:
+       -"8082:8090"
 
