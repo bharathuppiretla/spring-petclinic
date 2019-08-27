@@ -76,7 +76,7 @@ sh "sudo docker pull bharathuppiretla/petclinic"
     }
     stage('Run Playbook') {
         sshCommand remote: remote1, command: "cd ~/ansible; ansible-playbook  splaybook.yaml"
-        sshCommand remote: remote2, command: "cd ~/ansible; ansible-playbook  splaybook.yaml"
+       
     }      
    
 }
