@@ -1,0 +1,12 @@
+hosts: qa
+  sudo: yes
+
+  tasks:
+    - name: Pull docker image
+      shell: docker pull bharathuppiretla/petclinic
+
+    - name: Stop docker container
+      shell: docker rm -f petclinic
+
+    - name: Run docker container
+      shell: docker run -itd -p 8081:8080 --name petclinic bharathuppiretla/petclinic
