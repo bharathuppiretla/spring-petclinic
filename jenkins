@@ -69,6 +69,14 @@ sh "sudo docker-compose up -d --build"
 sh "sudo docker pull bharathuppiretla/petclinic"
 }
  
+   stage('Playbook') {
+        sshCommand remote: remote1, command: "rm -rf ~/ansible/splaybook.yaml"
+        sshPut remote: remote1, from: 'splaybook.yaml', into: '/home/devopsinfra/ansible/splaybook.yaml'
         
+    }
+    stage('Run Playbook') {
+        sshCommand remote: remote1, command: "cd ~/ansible; ansible-playbook  splaybook.yaml"
+        sshCommand remote: remote2, command: "cd ~/ansible; ansible-playbook  splaybook.yaml"
+    }      
    
 }
