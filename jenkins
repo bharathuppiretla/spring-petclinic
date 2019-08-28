@@ -3,7 +3,6 @@ node {
    def giturl = "https://github.com/bharathuppiretla/spring-petclinic.git" 
    def repoBranch = "master" 
    def server =Artifactory.server 'artifactory'
-   
     stage('Git-Checkout') { // for display purposes
       // Get code from a GitHub repository
       gitClone "${gitURL}","${repoBranch}"     
@@ -50,13 +49,10 @@ node {
 sh "sudo docker build -t bharathuppiretla/petclinic ."
 sh "sudo docker push bharathuppiretla/petclinic"
 
-  
 }
 stage('composeup')
 {
 sh "sudo docker-compose up -d --build"
 sh "sudo docker pull bharathuppiretla/petclinic"
-}
- 
-   
+}  
 }
