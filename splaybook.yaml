@@ -1,12 +1,48 @@
-hosts: qa
-  sudo: yes
-
+- hosts: Client
+  become: yes
+  
   tasks:
-    - name: Pull docker image
-      shell: docker pull bharathuppiretla/petclinic
+   - name: install pip
+     apt:
+       name: python-pip
+       state: present
 
-    - name: Stop docker container
-      shell: docker rm -f petclinic
+   - name: Install prerequisites
+     apt:
+      name: ['apt-transport-https','ca-certificates','curl','gnupg2','software-properties-common']
+      state: present
+      
+   - name: Add Docker GPG key
+     apt_key: url=https://download.docker.com/linux/ubuntu/gpg
 
-    - name: Run docker container
-      shell: docker run -itd -p 8082:8080 --name petclinic bharathuppiretla/petclinic
+   - name: Add Docker APT repository
+     apt_repository:
+       repo: deb [arch=amd64] https://download.docker.com/linux/{{ansible_distribution|lower}} {{ansible_distribution_release}} stable
+
+   - name : install docker
+     apt:
+       name: docker-ce
+       state: present
+
+   - name: install docker module
+     pip: name=docker-py
+
+  tasks: 
+  - name: Remove old docker image
+    docker_container:
+      image: bharathuppiretla/petclinic
+      name: petclinic
+      expose: 8080
+      ports:
+      - 8081:8080
+      state:  absent
+      
+  - name: Docker Pull and Run
+    docker_container:
+      name: petclinic
+      image:  bharathuppiretla/petclinic
+      pull: always
+      expose: 8080
+      ports:
+      - 8081:8080
+      state:  started
