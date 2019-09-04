@@ -1,6 +1,24 @@
 node {
    def mvnHome
    def server =Artifactory.server 'artifactory'
+  //Server configuration for anisible
+  def remote = [:]
+            remote.host = 'oildr55952dns0.eastus2.cloudapp.azure.com'
+            remote.user = "ansible"
+            remote.password = "ansible"
+            remote.allowAnyHosts = true
+     // host configuration configuration for anisible
+             def remote1 = [:]
+            remote1.host = 'oildr55952dns1.eastus2.cloudapp.azure.com'
+            remote1.user = "ansible"
+            remote1.password = "ansible"
+            remote1.allowAnyHosts = true
+           def remote2 = [:]
+            remote2.host = 'oildr55952dns2.eastus2.cloudapp.azure.com'
+            remote2.user = "ansible"
+            remote2.password = "ansible"
+            remote2.allowAnyHosts = true
+
    stage('Preparation') { // for display purposes
       // Get some code from a GitHub repository
        git 'https://github.com/bharathuppiretla/spring-petclinic.git' 
@@ -68,6 +86,18 @@ stage('composeup')
 sh "sudo docker-compose up -d --build"
 sh "sudo docker pull bharathuppiretla/petclinic"
 }
- 
+
+//stage(copy ansible playbok)
+//{
+//}
+ stage('Run ansible playbook') {
+           
+                sshCommand remote: remote, command: "cd ~/ansible; ansible-playbook  playbook.yaml "
+               
+        }
+
+ stage('MAIL'){
+        mail bcc: '', body: 'Build Failed', cc: '', from: '', replyTo: '', subject: 'Build Failed', to: 'bharathuppiretlagmail.com' 
+        }
    
 }
