@@ -80,10 +80,10 @@ sh "sudo docker pull bharathuppiretla/petclinic"
 //{
 //}
  stage('Run ansible playbook') {
-           
-                
-               sshPut remote: remote, from: '~/splaybook.yaml', into: '/home/devopsinfra/ansible/splaybook.yaml'
-               sshCommand remote: remote, command: "cd /home/devopsinfra/ansible/splaybook.yaml ; ansible-playbook  splaybook.yaml "
+          
+                sh "ansible-playbook   playbook.yaml --user devopsinfra"
+              // sshPut remote: remote, from: '~/splaybook.yaml', into: '/home/devopsinfra/ansible/splaybook.yaml'
+               //sshCommand remote: remote, command: "cd /home/devopsinfra/ansible/splaybook.yaml ; ansible-playbook  splaybook.yaml "
         }
 
  stage('MAIL'){
