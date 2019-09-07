@@ -34,7 +34,7 @@
       name: petclinic
       expose: 8080
       ports:
-      - 8081:8080
+      - 8083:8080
       state:  absent
       
   - name: Docker Pull and Run
