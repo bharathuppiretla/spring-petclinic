@@ -41,8 +41,8 @@
     docker_container:
       name: petclinic
       image:  bharathuppiretla/petclinic
-      pull: always
+    
       expose: 8080
       ports:
-      - 8081:8080
+      - 8083:8080
       state:  started
