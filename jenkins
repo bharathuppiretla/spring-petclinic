@@ -5,7 +5,7 @@ node {
   def remote = [:]
             remote.host = 'oildr55952dns0.eastus2.cloudapp.azure.com'
             remote.user = "devopsinfra"
-            remote.password = "Applestore12$5"
+            remote.password = "Applestore12\$5"
             remote.allowAnyHosts = true
      
    stage('Preparation') { // for display purposes
