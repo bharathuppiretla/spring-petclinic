@@ -30,10 +30,7 @@
   tasks:
     - name: Pull docker image
       shell: docker pull bharathuppiretla/petclinic
-    
-      - name: Stop docker container
-        shell: docker rm -f spring-petclinic
       
       - name: Run docker container
-        shell: docker run -itd -p 8083:8080 --name spring-petclinic bharathuppiretla/petclinic
+        shell: docker run -itd -p 8083:8080 --name spring-petclinic:latest bharathuppiretla/petclinic
      
