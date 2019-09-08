@@ -8,7 +8,7 @@ node {
             remote.password = "Applestore12\$5"
             remote.allowAnyHosts = true
      
-   stage('Preparation') { // for display purposes
+   stage('Check-out') { // for display purposes
       // Get some code from a GitHub repository
        git 'https://github.com/bharathuppiretla/spring-petclinic.git' 
       // Get the Maven tool.
@@ -82,12 +82,11 @@ sh "sudo docker pull bharathuppiretla/petclinic"
  stage('Run ansible playbook') {
           
                 sh "ansible-playbook   splaybook.yaml --user devopsinfra"
-              // sshPut remote: remote, from: '~/splaybook.yaml', into: '/home/devopsinfra/ansible/splaybook.yaml'
-               //sshCommand remote: remote, command: "cd /home/devopsinfra/ansible/splaybook.yaml ; ansible-playbook  splaybook.yaml "
+              
         }
 
- stage('MAIL'){
-        mail bcc: '', body: 'Build Failed', cc: '', from: '', replyTo: '', subject: 'Build Failed', to: 'bharathuppiretlagmail.com' 
-        }
+//stage('MAIL'){
+       // mail bcc: '', body: 'Build Failed', cc: '', from: '', replyTo: '', subject: 'Build Failed', to: 'bharathuppiretlagmail.com' 
+        //}
    
 }
