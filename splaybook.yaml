@@ -33,4 +33,3 @@
       
       - name: Run docker container
         shell: docker run -itd -p 8083:8080 --name spring-petclinic:latest bharathuppiretla/petclinic
-     
