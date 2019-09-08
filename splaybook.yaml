@@ -32,7 +32,7 @@
       shell: docker pull bharathuppiretla/petclinic
       
       -name: stop container
-      shell:docker stop spring-petclinic
+       shell: docker stop spring-petclinic
       
       - name: Stop docker container
       shell: docker rm -f spring-petclinic
